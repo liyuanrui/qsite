@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from github.views import index
+from github.views import qpython
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',index),
+    url(r'^qpython',qpython),
 ]

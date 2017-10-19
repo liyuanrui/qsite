@@ -5,7 +5,8 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-def index(request):
+
+def qpython(request):
     urls=['https://github.com/qpython-android/qpython/releases','https://github.com/qpython-android/qpython3/releases']
     msg=[]
     for url in urls:
