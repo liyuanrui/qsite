@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from github.views import qpython
+from github.views import qpython,download
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^qpython',qpython),
+    url(r'^download',download),
 ]

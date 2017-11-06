@@ -1,10 +1,28 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from django.http import StreamingHttpResponse
 import re
+import os
 import requests
 from bs4 import BeautifulSoup
 
+def download(request):
+    filename=request.GET.get('filename')
+    def file_iterator(file_name, chunk_size=512):
+        with open(file_name) as f:
+            while True:
+                c = f.read(chunk_size)
+                if c:
+                    yield c
+                else:
+                    break
+
+    response = StreamingHttpResponse(file_iterator(filename))
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(filename)
+
+    return response
+    
 
 def qpython(request):
     urls=['https://github.com/qpython-android/qpython/releases','https://github.com/qpython-android/qpython3/releases']
